@@ -1,6 +1,74 @@
 let colorFX="rgba(100, 29, 29, 1)";
 let colorFX2="rgba(122,31,31,0.6)";
 
+let coefZoom=1;
+//Zoom y centrado inicial
+// window.onload = () => {
+//     // Aplicar zoom
+//     let anchoTotal=window.innerWidth;
+//     let anchoCanvas=document.querySelector("#contCanvas").offsetWidth;
+//     coefZoom=anchoTotal/anchoCanvas;
+//     let zoom=100*anchoTotal/anchoCanvas
+//     // document.documentElement.style.zoom = `${zoom}%`;
+    
+
+//     // Esperar un pequeño instante a que se aplique el zoom
+//     setTimeout(() => {
+//       const target = document.getElementById('contCanvas');
+//       const rect = target.getBoundingClientRect();
+
+//       // Centrar el div en la pantalla
+//       window.scrollTo({
+//         left: rect.left + window.scrollX - window.innerWidth / 2 + rect.width / 2,
+//         top: rect.top + window.scrollY - window.innerHeight / 2 + rect.height / 2,
+//         behavior: 'instant'
+//       });
+//     }, 100);
+
+//     document.querySelector("#contCanvas").style.cssText=`transform:scale(${coefZoom})`;
+// };
+
+
+
+
+function centerDiv() {
+    // Aplicar zoom
+    let anchoTotal=document.documentElement.clientWidth;
+    let anchoCanvas=document.querySelector("#contCanvas").offsetWidth;
+    coefZoom=anchoTotal/anchoCanvas;
+    document.querySelector("#contCanvas").style.cssText=`transform:scale(${coefZoom})`
+
+    const target = document.getElementById('contCanvas');
+    const rect = target.getBoundingClientRect();
+
+      window.scrollTo({
+      left: rect.left + window.scrollX - anchoTotal / 2 + rect.width / 2,
+      top: rect.top + window.scrollY - window.innerHeight / 2 + rect.height / 2,
+      behavior: 'instant'
+    });
+
+}
+
+// Esperar al cargar y redimensionar
+window.addEventListener('load', () => {
+  setTimeout(centerDiv, 200);
+});
+
+window.addEventListener('resize', () => {
+  setTimeout(centerDiv, 200);
+});
+
+
+
+
+
+
+
+
+
+
+
+
 //Mostrar teclado
 function muestreo(){
 
