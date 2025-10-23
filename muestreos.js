@@ -8,7 +8,7 @@ let coefZoom=1;
 function centerDiv() {
     // Aplicar zoom
     let anchoTotal=document.documentElement.clientWidth;
-    if(anchoTotal>1000)anchoTotal=1000;
+    if(anchoTotal>800)anchoTotal=800;
     let anchoCanvas=document.querySelector("#contCanvas").offsetWidth;
     coefZoom=anchoTotal/anchoCanvas;
     document.querySelector("#contCanvas").style.cssText=`transform:scale(${coefZoom})`
@@ -29,20 +29,7 @@ window.addEventListener('load', () => {
   setTimeout(centerDiv, 200);
 });
 
-window.addEventListener('resize', () => {
-  setTimeout(centerDiv, 200);
-});
-
-
-
-
-
-
-
-
-
-
-
+document.querySelector("#botCentrar").addEventListener("mousedown",centerDiv);
 
 //Mostrar teclado
 function muestreo(){
