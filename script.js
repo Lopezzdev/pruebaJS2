@@ -536,11 +536,11 @@ function clickEnv1(){
   let total=580;
   let posCanvas = canvasAmp.getBoundingClientRect();
   
-  posX=Math.floor(event.clientX-posCanvas.left);
+  posX=Math.floor((event.clientX-posCanvas.left)/coefZoom);
 
   if(!triggerAmp1){
 
-    posY=Math.floor(event.clientY-posCanvas.top);
+    posY=Math.floor((event.clientY-posCanvas.top)/coefZoom);
 
     if(posX>=135&&posX<=151&&posY>=123&&posY<=139){
       if(indiceEnv==2)habLow1=!habLow1;
@@ -613,18 +613,18 @@ function clickCustom(){
 
   let posCanvas = canvasCustom.getBoundingClientRect();
 
-  // posY2=1+(posCanvas.top-event.clientY)/(canvasCustom.height);
-  posY2=1+(posCanvas.top-event.clientY)/(canvasCustom.height)-0.01;
+  posY2=1*coefZoom+(posCanvas.top-event.clientY)/(canvasCustom.height)-0.01;
+  posY2=posY2/coefZoom;
   posY2=parseFloat(posY2.toFixed(2));
-  p(posY2)
 
   if(!triggerCustom){
     posX2=(event.clientX-posCanvas.left-2)/anchoColumna;
+    posX2=posX2/coefZoom;
     posX2=Math.floor(posX2);
     if(posX2<0)posX2=0;
     if(posX2>cantArmonicos)posX2=cantArmonicos;
   }
-  triggerCustom=true;
+  triggerCustom=true;  
 
   if(indiceOnda==3)armonicosRandom[posX2]=posY2;
   else armonicosCustom[posX2]=posY2;
@@ -638,6 +638,7 @@ function clickAncho(){
   let posCanvas = canvasAncho.getBoundingClientRect();
 
   posY3=Math.floor(event.clientY-posCanvas.bottom);
+  posY3=posY3/coefZoom;
   if(posY3<-192)posY3=-192;
   if(posY3>-5)posY3=-5;
   anchoCuadrada=-posY3/1.92;
@@ -661,6 +662,9 @@ function clickEcu(){
     mouseX = event.touches[0].clientX - rect.left;
     mouseY = event.touches[0].clientY - rect.top;
   }
+
+  mouseX=mouseX/coefZoom;
+  mouseY=mouseY/coefZoom;
 
   for(i=0;i<cantidadFiltros;i++){
         // if(mouseX>=Xfiltros[i]-6&&mouseX<=Xfiltros[i]+6&&mouseY>=Yfiltros[i]-6&&mouseY<=Yfiltros[i]+6&&indiceEcu==null)indiceEcu=i;;
@@ -692,6 +696,9 @@ function clickFX(){
 
   mouseX=event.clientX - rect.left;
   mouseY=rect.top-event.clientY;
+
+  mouseX=mouseX/coefZoom;
+  mouseY=mouseY/coefZoom;
   
   if(!triggerFX){
     for(i=0;i<xBoolFX.length;i++){
@@ -835,6 +842,9 @@ function clickear(event){
     mouseX = event.touches[dedo].clientX - rect.left;
     mouseY = event.touches[dedo].clientY - rect.top;
   }
+  
+  mouseX=mouseX/coefZoom;
+  mouseY=mouseY/coefZoom;
 
   let nota;
   let XX=0,XXaux=0;

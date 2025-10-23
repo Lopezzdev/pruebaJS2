@@ -8,6 +8,7 @@ let coefZoom=1;
 function centerDiv() {
     // Aplicar zoom
     let anchoTotal=document.documentElement.clientWidth;
+    if(anchoTotal>1000)anchoTotal=1000;
     let anchoCanvas=document.querySelector("#contCanvas").offsetWidth;
     coefZoom=anchoTotal/anchoCanvas;
     document.querySelector("#contCanvas").style.cssText=`transform:scale(${coefZoom})`
