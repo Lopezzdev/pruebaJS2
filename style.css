@@ -218,6 +218,12 @@ canvas{
     background-color: rgb(12, 12, 12);
 }
 
+#bloqueoAux{
+    /* background-color: red; */
+    width: 100%;
+    height: 30px;
+}
+
 /* #ecu{top:-202px;} */
 /* #efectos{top:-202px;} */
 /* #instrumentos{top:-100px;} */

@@ -1,5 +1,12 @@
 let arrayCanvas=["env","custom","ecu"];
 
+// Esperar al cargar y redimensionar
+window.addEventListener('load', () => {
+  setTimeout(centerDiv, 200);
+});
+
+document.querySelector("#botCentrar").addEventListener("mousedown",centerDiv);
+
 //Leer entrada de teclado
 document.addEventListener("keydown",(event)=>{
   for(i=0;i<letras.length;i++){
@@ -54,6 +61,9 @@ document.querySelector("#teclado").addEventListener('touchmove', function (event
   event.preventDefault(); // evita desplazamiento
 }, { passive: false });
 document.querySelector("#ecu").addEventListener('touchmove', function (event) {
+  event.preventDefault(); // evita desplazamiento
+}, { passive: false });
+document.querySelector("#bloqueoAux").addEventListener('touchmove', function (event) {
   event.preventDefault(); // evita desplazamiento
 }, { passive: false });
 

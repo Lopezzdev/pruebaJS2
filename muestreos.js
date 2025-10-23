@@ -21,15 +21,7 @@ function centerDiv() {
       top: rect.top + window.scrollY - window.innerHeight / 2 + rect.height / 2,
       behavior: 'instant'
     });
-
 }
-
-// Esperar al cargar y redimensionar
-window.addEventListener('load', () => {
-  setTimeout(centerDiv, 200);
-});
-
-document.querySelector("#botCentrar").addEventListener("mousedown",centerDiv);
 
 //Mostrar teclado
 function muestreo(){
