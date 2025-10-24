@@ -28,7 +28,6 @@ const sampleRate = audioCtx.sampleRate; // Típicamente 44100
 let frecuencia=32.703; octava=2;cantCiclos=1;
 let indiceOnda=0,indiceEnv=0;
 let cantSources=50;
-// let cantSources=10;
 
 let boolEnv=false,boolAmp1=false,boolLow1=false,habLow1=false,boolHigh1=false,habHigh1=false;
 let amp1=[0.01,1,0.5,0.5,0.5],maxAmps=[10,10,1,10,1];boolCustom=false;
@@ -42,6 +41,8 @@ let trans=0,delaySt;
 let indiceEcu=null;
 let frecuenciaAux=20000,valorQaux=10,cantidadFiltros=4;
 let filtros=[],boolFiltros=[0,0,0,0],Xfiltros=[100,250,500,600],Yfiltros=[80,160,20,101],freqFiltros=[54,236,2779,7455],dBFiltros=[6.66,-6.66,16.66,3,16],Qfiltros=[0,1,5,0],xEcu,yEcu,qEcu;
+let minsEnv=[0.005,0.005,0,0.01,0,0],maxsEnv=[10,10,1,10,1,20];
+let minsFiltros=[0,0.005,0,0.01,0,0],maxsFiltros=[10,10,1,10,10000,20];
 
 let letras=["q","2","w","3","e","r","5","t","6","y","7","u","z","s","x","d","c","v","g","b","h","n","j","m",","];
 let letras2=["i","9","o","0","p","Dead","¿","+","Backspace","Enter","Insert","Delete","End"];
@@ -83,7 +84,6 @@ let delay,delayFeedback,delayDry,delayWet,delayOut,reverbOut;
 
 let matrizEfectos=[[7,0.2,20],[0.6,0,1],[8,0.2,15],[0.03,0.01,0.1],[0.3,0.05,1],[0.4,0.05,0.8],[0.3,0,1],[0.4,0,1],[0,-2,2],[0.3,0,1],[0.3,0,0.9],[0.8,0,1]];
 //                  HzTremolo/intTremolo/HzVibrato/   IntVibrato  /  msDelay  /feedBack delay /IntDelay /IntReverb/intPitch/ msPitch / IntDist / CutDist
-// let boolFX=[false,false,false,false,false,false],selecRev=1,indiceFX=-1;
 let boolFX=[false,false,false,false,false,false],selecRev=1,indiceFX=-1;
 
 for(i=0;i<cantSources;i++){
@@ -557,52 +557,43 @@ function clickEnv1(){
   triggerAmp1=true;
 
   if(indiceEnv==1){
-    posX=posX*maxAmps[posY]/total;
+    
+    if(posY==2||posY==4)posX=posX*maxAmps[posY]/total;
+    else posX=minsEnv[posY]+(posX*posX*posX)/(34000*total);
+    posX=parseFloat(posX.toFixed(5));
+    
     if(posY<5)amp1[posY]=posX;
+
   }
   if(indiceEnv==2){
-    posX=posX*maxFiltros[posY]/total;
+    if(posY==2||posY==5)posX=posX*maxFiltros[posY]/total;
+    else posX=minsFiltros[posY]+(posX*posX*posX)/(34000*total);
+    if(posY==4)posX*=1000;
+    posX=parseFloat(posX.toFixed(5));
+    
     if(posY<6)filtroLow1[posY]=posX;
   }
   if(indiceEnv==3){
-    posX=posX*maxFiltros[posY]/total;
+    if(posY==2||posY==5)posX=posX*maxFiltros[posY]/total;
+    else posX=minsFiltros[posY]+(posX*posX*posX)/(34000*total);
+    if(posY==4)posX*=1000;
+    posX=parseFloat(posX.toFixed(5));
+
     if(posY<6)filtroHigh1[posY]=posX;
   }
 
-  if(amp1[0]<0.005)amp1[0]=0.005;
-  if(amp1[1]<0.005)amp1[1]=0.005;
-  if(amp1[3]<0.01)amp1[3]=0.01;
-  if(amp1[0]>10)amp1[0]=10;
-  if(amp1[1]>10)amp1[1]=10;
-  if(amp1[3]>10)amp1[3]=10;
-  if(amp1[2]>1)amp1[2]=1;
-  if(amp1[2]<0)amp1[2]=0;
-  if(amp1[4]<0)amp1[4]=0;
-  if(amp1[4]>1)amp1[4]=1;
-
-  if(filtroLow1[0]<0)filtroLow1[0]=0;
-  if(filtroLow1[1]<0.005)filtroLow1[1]=0.005;
-  if(filtroLow1[3]<0.005)filtroLow1[3]=0.005;
-  if(filtroLow1[0]>10)filtroLow1[0]=10;
-  if(filtroLow1[1]>10)filtroLow1[1]=10;
-  if(filtroLow1[3]>10)filtroLow1[3]=10;
-  if(filtroLow1[2]>1)filtroLow1[2]=1;
-  if(filtroLow1[2]<0)filtroLow1[2]=0;
-  if(filtroLow1[4]<0)filtroLow1[4]=0;
-  if(filtroLow1[4]>10000)filtroLow1[4]=10000;
-  if(filtroLow1[5]>20)filtroLow1[5]=20;
-
-  if(filtroHigh1[0]<0)filtroHigh1[0]=0;
-  if(filtroHigh1[1]<0.005)filtroHigh1[1]=0.005;
-  if(filtroHigh1[3]<0.005)filtroHigh1[3]=0.005;
-  if(filtroHigh1[0]>10)filtroHigh1[0]=10;
-  if(filtroHigh1[1]>10)filtroHigh1[1]=10;
-  if(filtroHigh1[3]>10)filtroHigh1[3]=10;
-  if(filtroHigh1[2]>1)filtroHigh1[2]=1;
-  if(filtroHigh1[2]<0)filtroHigh1[2]=0;
-  if(filtroHigh1[4]<0)filtroHigh1[4]=0;
-  if(filtroHigh1[4]>10000)filtroHigh1[4]=10000;
-  if(filtroHigh1[5]>20)filtroHigh1[5]=20;
+  for(i=0;i<=5;i++){
+    if(amp1[i]<minsEnv[i])amp1[i]=minsEnv[i];
+    if(amp1[i]>maxsEnv[i])amp1[i]=maxsEnv[i];
+  }
+  for(i=0;i<=5;i++){
+    if(filtroLow1[i]<minsFiltros[i])filtroLow1[i]=minsFiltros[i];
+    if(filtroLow1[i]>maxsFiltros[i])filtroLow1[i]=maxsFiltros[i];
+  }
+  for(i=0;i<=5;i++){
+    if(filtroHigh1[i]<minsFiltros[i])filtroHigh1[i]=minsFiltros[i];
+    if(filtroHigh1[i]>maxsFiltros[i])filtroHigh1[i]=maxsFiltros[i];
+  }
 
   crearArrays();
   muestreoEnv1();

@@ -163,8 +163,13 @@ function muestreoEnv1(){
   if(indiceEnv==1){
     ctxAmp.fillStyle=colorFX2;
     for(i=0;i<5;i++){
-      ancho=total/(maxAmps[i]/amp1[i]);
+
+      if(i==2||i==4)ancho=total*amp1[i]/maxAmps[i];
+      else ancho=Math.pow((amp1[i]-minsEnv[i])*34000*total,1/3);
+      if(ancho>total)ancho=total;
+
       ctxAmp.fillRect(2,20*i+2,ancho,18);
+
     }
 
     ctxAmp.fillStyle=colorFX;
@@ -180,7 +185,11 @@ function muestreoEnv1(){
   if(indiceEnv==2){
     ctxAmp.fillStyle=colorFX2;
     for(i=0;i<6;i++){
-      ancho=total/(maxFiltros[i]/filtroLow1[i]);
+      if(i==2||i==5) ancho=total/(maxFiltros[i]/filtroLow1[i]);
+      else ancho=Math.pow((filtroLow1[i]-minsFiltros[i])*34000*total,1/3);
+      if(i==4)ancho/=10;
+      if(ancho>total)ancho=total;
+
       ctxAmp.fillRect(2,20*i+2,ancho,18);
     }
 
@@ -206,7 +215,11 @@ function muestreoEnv1(){
   if(indiceEnv==3){
     ctxAmp.fillStyle=colorFX2;
     for(i=0;i<6;i++){
-      ancho=total/(maxFiltros[i]/filtroHigh1[i]);
+      if(i==2||i==5) ancho=total/(maxFiltros[i]/filtroHigh1[i]);
+      else ancho=Math.pow((filtroHigh1[i]-minsFiltros[i])*34000*total,1/3);
+      if(i==4)ancho/=10;
+      if(ancho>total)ancho=total;
+      
       ctxAmp.fillRect(2,20*i+2,ancho,18);
     }
 

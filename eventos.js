@@ -268,6 +268,9 @@ document.querySelector("#ecu").addEventListener("dblclick",()=>{
     mouseX = event.clientX - rect.left;
     mouseY = event.clientY - rect.top;
 
+    mouseX=mouseX/coefZoom;
+    mouseY=mouseY/coefZoom;
+
     for(i=0;i<cantidadFiltros;i++)if(mouseX>=Xfiltros[i]-16&&mouseX<=Xfiltros[i]+16&&mouseY>=Yfiltros[i]-16&&mouseY<=Yfiltros[i]+16){
         boolFiltros[i]=!boolFiltros[i];
     }
@@ -281,11 +284,15 @@ document.querySelector("#ecu").addEventListener("dblclick",()=>{
 });
 
 document.querySelector("#ecu").addEventListener("wheel", (event) => {
+    event.preventDefault();
 
     let rect = canvasEcu.getBoundingClientRect();
 
     mouseX = event.clientX - rect.left;
     mouseY = event.clientY - rect.top;
+
+    mouseX/=coefZoom;
+    mouseY/=coefZoom;
 
     for(i=1;i<3;i++)if(mouseX>=Xfiltros[i]-6&&mouseX<=Xfiltros[i]+6&&mouseY>=Yfiltros[i]-6&&mouseY<=Yfiltros[i]+6){
 
