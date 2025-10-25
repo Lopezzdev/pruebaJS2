@@ -536,11 +536,13 @@ function clickEnv1(){
   let total=580;
   let posCanvas = canvasAmp.getBoundingClientRect();
   
-  posX=Math.floor((event.clientX-posCanvas.left)/coefZoom);
+  if(!esTactil)posX=Math.floor((event.clientX-posCanvas.left)/coefZoom);
+  else posX=Math.floor((event.touches[0].clientX - posCanvas.left)/coefZoom);
 
   if(!triggerAmp1){
 
-    posY=Math.floor((event.clientY-posCanvas.top)/coefZoom);
+    if(!esTactil)posY=Math.floor((event.clientY-posCanvas.top)/coefZoom);
+    else posY=Math.floor((event.touches[0].clientY-posCanvas.top)/coefZoom);
 
     if(posX>=135&&posX<=151&&posY>=123&&posY<=139){
       if(indiceEnv==2)habLow1=!habLow1;
@@ -604,12 +606,15 @@ function clickCustom(){
 
   let posCanvas = canvasCustom.getBoundingClientRect();
 
-  posY2=1*coefZoom+(posCanvas.top-event.clientY)/(canvasCustom.height)-0.01;
+  if(!esTactil) posY2=1*coefZoom+(posCanvas.top-event.clientY)/(canvasCustom.height)-0.01;
+  else posY2=1*coefZoom+(posCanvas.top-event.touches[0].clientY)/(canvasCustom.height)-0.01;
+
   posY2=posY2/coefZoom;
   posY2=parseFloat(posY2.toFixed(2));
 
   if(!triggerCustom){
-    posX2=(event.clientX-posCanvas.left-2)/anchoColumna;
+    if(!esTactil) posX2=(event.clientX-posCanvas.left-2)/anchoColumna;
+    else posX2=(event.touches[0].clientX-posCanvas.left-2)/anchoColumna;
     posX2=posX2/coefZoom;
     posX2=Math.floor(posX2);
     if(posX2<0)posX2=0;
@@ -643,9 +648,6 @@ function clickAncho(){
 function clickEcu(){
   let rect = canvasEcu.getBoundingClientRect();
 
-  // mouseX=event.clientX - rect.left;
-  // mouseY=event.clientY - rect.top;
-
   if(!esTactil){
     mouseX = event.clientX - rect.left;
     mouseY = event.clientY - rect.top;
@@ -658,8 +660,7 @@ function clickEcu(){
   mouseY=mouseY/coefZoom;
 
   for(i=0;i<cantidadFiltros;i++){
-        // if(mouseX>=Xfiltros[i]-6&&mouseX<=Xfiltros[i]+6&&mouseY>=Yfiltros[i]-6&&mouseY<=Yfiltros[i]+6&&indiceEcu==null)indiceEcu=i;;
-        if(mouseX>=Xfiltros[i]-16&&mouseX<=Xfiltros[i]+16&&mouseY>=Yfiltros[i]-16&&mouseY<=Yfiltros[i]+16&&indiceEcu==null)indiceEcu=i;;
+        if(mouseX>=Xfiltros[i]-16&&mouseX<=Xfiltros[i]+16&&mouseY>=Yfiltros[i]-16&&mouseY<=Yfiltros[i]+16&&indiceEcu==null)indiceEcu=i;
   }
 
   if(indiceEcu==null)indiceEcu=999;
@@ -685,8 +686,13 @@ function clickEcu(){
 function clickFX(){
   let rect = canvasEcu.getBoundingClientRect();
 
-  mouseX=event.clientX - rect.left;
-  mouseY=rect.top-event.clientY;
+  if(!esTactil){
+    mouseX=event.clientX - rect.left;
+    mouseY=rect.top-event.clientY;
+  }else{
+    mouseX = event.touches[0].clientX - rect.left;
+    mouseY = rect.top - event.touches[0].clientY;
+  }
 
   mouseX=mouseX/coefZoom;
   mouseY=mouseY/coefZoom;

@@ -54,22 +54,13 @@ document.addEventListener("mouseup",()=>{
 document.querySelector("#botones").addEventListener("mousedown",crearArrays);
 document.querySelector("#efectos").addEventListener("mouseup",crearArrays);
 
-// let auxToque=false;
-// document.querySelector("#teclado").addEventListener("touchstart",()=>{document.body.style.overflow = 'hidden';auxToque=true;})
+let divsBloqueados=["#teclado","#ecu","#bloqueoAux","#efectos","#env","#custom"];
 
-document.querySelector("#teclado").addEventListener('touchmove', function (event) {
+for(i=0;i<divsBloqueados.length;i++){
+  document.querySelector(divsBloqueados[i]).addEventListener('touchmove', function (event) {
   event.preventDefault(); // evita desplazamiento
-}, { passive: false });
-document.querySelector("#ecu").addEventListener('touchmove', function (event) {
-  event.preventDefault(); // evita desplazamiento
-}, { passive: false });
-document.querySelector("#bloqueoAux").addEventListener('touchmove', function (event) {
-  event.preventDefault(); // evita desplazamiento
-}, { passive: false });
-
-
-// document.addEventListener("touchstart",()=>{if(!auxToque)document.body.style.overflow = 'scroll';})
-// document.addEventListener("touchend",()=>{document.body.style.overflow = 'scroll';auxToque=false;})
+  }, { passive: false });
+}
 
 document.querySelector("#botAmp1").addEventListener("mousedown",()=>{
 
@@ -207,25 +198,48 @@ if(!esTactil){
 
 
 
+if(!esTactil){
+  document.querySelector("#env").addEventListener("mousedown",()=>{
+    clickEnv1();
+    document.querySelector("#env").addEventListener("mousemove",clickEnv1);
+  });
+  document.querySelector("#env").addEventListener("mouseup",()=>{
+    document.querySelector("#env").removeEventListener("mousemove",clickEnv1);
+    triggerAmp1=false;
+  });
+}else{
+  document.querySelector("#env").addEventListener("touchstart",()=>{
+    clickEnv1();
+    document.querySelector("#env").addEventListener("touchmove",clickEnv1);
+  });
+  document.querySelector("#env").addEventListener("touchend",()=>{
+    document.querySelector("#env").removeEventListener("touchmove",clickEnv1);
+    triggerAmp1=false;
+  });
+}
 
-document.querySelector("#env").addEventListener("mousedown",()=>{
-  clickEnv1();
-  document.querySelector("#env").addEventListener("mousemove",clickEnv1);
-});
-document.querySelector("#env").addEventListener("mouseup",()=>{
-  document.querySelector("#env").removeEventListener("mousemove",clickEnv1);
-  triggerAmp1=false;
-});
+if(!esTactil){
+  document.querySelector("#custom").addEventListener("mousedown",()=>{
+    clickCustom();
+    document.querySelector("#custom").addEventListener("mousemove",clickCustom);
+  });
+  document.querySelector("#custom").addEventListener("mouseup",()=>{
+    document.querySelector("#custom").removeEventListener("mousemove",clickCustom);
+    crearArrays();
+    triggerCustom=false;
+  });
+}else{
+  document.querySelector("#custom").addEventListener("touchstart",()=>{
+    clickCustom();
+    document.querySelector("#custom").addEventListener("touchmove",clickCustom);
+  });
+  document.querySelector("#custom").addEventListener("touchend",()=>{
+    document.querySelector("#custom").removeEventListener("touchmove",clickCustom);
+    crearArrays();
+    triggerCustom=false;
+  });
+}
 
-document.querySelector("#custom").addEventListener("mousedown",()=>{
-  clickCustom();
-  document.querySelector("#custom").addEventListener("mousemove",clickCustom);
-});
-document.querySelector("#custom").addEventListener("mouseup",()=>{
-  document.querySelector("#custom").removeEventListener("mousemove",clickCustom);
-  crearArrays();
-  triggerCustom=false;
-});
 
 document.querySelector("#ancho").addEventListener("mousedown",()=>{
   clickAncho();
@@ -235,32 +249,46 @@ document.querySelector("#ancho").addEventListener("mouseup",()=>{
   document.querySelector("#ancho").removeEventListener("mousemove",clickAncho);
 });
 
-document.querySelector("#efectos").addEventListener("mousedown",()=>{
-  clickFX();
-  document.querySelector("#efectos").addEventListener("mousemove",clickFX);
-})
-document.querySelector("#efectos").addEventListener("mouseup",()=>{
-  document.querySelector("#efectos").removeEventListener("mousemove",clickFX);
-  indiceFX=-1;triggerFX=false;
-})
+if(!esTactil){
+    document.querySelector("#efectos").addEventListener("mousedown",()=>{
+    clickFX();
+    document.querySelector("#efectos").addEventListener("mousemove",clickFX);
+  })
+  document.querySelector("#efectos").addEventListener("mouseup",()=>{
+    document.querySelector("#efectos").removeEventListener("mousemove",clickFX);
+    indiceFX=-1;triggerFX=false;
+  })
+}else{
+  document.querySelector("#efectos").addEventListener("touchstart",()=>{
+    clickFX();
+    document.querySelector("#efectos").addEventListener("touchmove",clickFX);
+  })
+  document.querySelector("#efectos").addEventListener("touchend",()=>{
+    document.querySelector("#efectos").removeEventListener("touchmove",clickFX);
+    indiceFX=-1;triggerFX=false;
+  })
+}
 
-document.querySelector("#ecu").addEventListener("mousedown",()=>{
-  indiceEcu=null;
-  document.querySelector("#ecu").addEventListener("mousemove",clickEcu);
-})
-document.querySelector("#ecu").addEventListener("mouseup",()=>{
-  document.querySelector("#ecu").removeEventListener("mousemove",clickEcu);
-  indiceEcu=null;
-})
 
-document.querySelector("#ecu").addEventListener("touchstart",()=>{
-  indiceEcu=null;
-  document.querySelector("#ecu").addEventListener("touchmove",clickEcu);
-})
-document.querySelector("#ecu").addEventListener("touchend",()=>{
-  document.querySelector("#ecu").removeEventListener("touchmove",clickEcu);
-  indiceEcu=null;
-})
+if(!esTactil){
+  document.querySelector("#ecu").addEventListener("mousedown",()=>{
+    indiceEcu=null;
+    document.querySelector("#ecu").addEventListener("mousemove",clickEcu);
+  })
+  document.querySelector("#ecu").addEventListener("mouseup",()=>{
+    document.querySelector("#ecu").removeEventListener("mousemove",clickEcu);
+    indiceEcu=null;
+  })
+}else{
+  document.querySelector("#ecu").addEventListener("touchstart",()=>{
+    indiceEcu=null;
+    document.querySelector("#ecu").addEventListener("touchmove",clickEcu);
+  })
+  document.querySelector("#ecu").addEventListener("touchend",()=>{
+    document.querySelector("#ecu").removeEventListener("touchmove",clickEcu);
+    indiceEcu=null;
+  })
+}
 
 document.querySelector("#ecu").addEventListener("dblclick",()=>{
     let rect = canvasEcu.getBoundingClientRect();

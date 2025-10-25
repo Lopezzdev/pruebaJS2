@@ -135,7 +135,7 @@ canvas{
     flex-direction: column;
     justify-content: center;
 }
-#contEnv,#contTrans,#contOndas,#contFX,#contBotInst{
+#contEnv,#contTrans,#contOndas,#contFX,#contBotInst,#contAyuda{
     font-size: 16px;
     font-weight: 900;
     justify-content: center;
@@ -143,6 +143,8 @@ canvas{
 }
 
 #contTrans{flex-direction: column;}
+#contAyuda{flex-direction: column;font-size: 20px;}
+
 
 #trans{
     position:absolute;
@@ -219,7 +221,6 @@ canvas{
 }
 
 #bloqueoAux{
-    /* background-color: red; */
     width: 100%;
     height: 30px;
 }
