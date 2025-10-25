@@ -1,8 +1,6 @@
 let colorFX="rgba(100, 29, 29, 1)";
 let colorFX2="rgba(122,31,31,0.6)";
 
-
-
 let coefZoom=1;
 
 function centerDiv() {
@@ -122,6 +120,7 @@ function mostrarCustom(){
     document.querySelector("#env").style.cssText="top:0px;transition:top 0.5s;";
     document.querySelector("#ecu").style.cssText="top:0px;transition:top 0.5s;";
     document.querySelector("#efectos").style.cssText="top:0px;transition:top 0.5s;";
+    document.querySelector("#instrumentos").style.cssText="top:0px;transition:top 0.5s;";
     indiceEnv=0;
     document.querySelector("#refrescar").style.cssText="top:-180px;left:-20px;transition:top 0.5s,left 0.5s;";
   }else{

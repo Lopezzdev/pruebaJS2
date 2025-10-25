@@ -6,7 +6,7 @@
 
     <title>Sintetizador</title>
 
-    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/70/70948.png">
+    <link rel="icon" href="./media/teclado.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,9 +40,6 @@
                     <div class="boton" id="botCustom">Custom</div>
                 </div>  
             </div>
-            <!-- <div id="contBotInst">
-                <div class="boton" id="botInst"></div>
-            </div> -->
             <div id="contOctavas">
                 <div class="boton" id="subirOctava">
                     <img src="./media/arriba.png" alt="">
@@ -57,6 +54,9 @@
             </div>
             <div id="contFX">
                 <div class="boton" id="botFX">FX</div>
+                <div class="boton" id="botInst">
+                    <img src="./media/teclado.png" alt="">
+                </div>
             </div>
             <div id="contAyuda">
                 <div class="boton" id="botCentrar">
@@ -87,16 +87,14 @@
         <canvas id="ancho" height="202" width="40"></canvas>
         <canvas id="ecu" height="202" width="704"></canvas>
         <canvas id="efectos" height="202" width="700"></canvas>
-        <!-- <div id="instrumentos">
-            <div id="ipiano">Piano</div>
-            <div id="iorgano">Órgano</div>
-            <div id="iteclado">Teclado</div>
-            <div id="isintetizador">Sintetizador</div>
-            <div id="ibajo">Bajo</div>
-            <div id="iguitarra">Guitarra</div>
-            <div id="iflauta">Flauta</div>
-            <div id="icoro">Coro</div>
-        </div> -->
+        <div id="instrumentos">
+            <div id="contInst">
+                <!-- <div id="botIzq">&lt;</div> -->
+                <div id="botIzq">◀</div>
+                <div id="textoIns">Piano</div>
+                <div id="botDer">▶</div>
+            </div>
+        </div>
 
         <div id="bloqueoAux"></div>
 
