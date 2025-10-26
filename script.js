@@ -814,6 +814,14 @@ document.querySelector("#refrescar").addEventListener("mousedown",()=>{
 
 })
 
+let indiceInst=0;
+let instrumentos=["Piano","Teclado","Organo","Flauta"];
+function cambiarInst(instrumento){
+  if(indiceInst<0)indiceInst=instrumentos.length;
+  if(indiceInst>=instrumentos.length)indiceInst=0;
+  document.querySelector("#textoIns").innerHTML=instrumentos[indiceInst];
+
+}
 
 
 const esTactil = window.matchMedia('(pointer: coarse)').matches;

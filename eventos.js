@@ -5,7 +5,7 @@ window.addEventListener('load', () => {
   setTimeout(centerDiv, 200);
 });
 
-window.addEventListener("orientationchange", () => {
+window.matchMedia("(orientation: landscape)").addEventListener("change", e => {
   centerDiv();
 });
 
@@ -341,6 +341,16 @@ document.querySelector("#ecu").addEventListener("wheel", (event) => {
     muestreoEcu();
 
 },{passive:false});
+
+document.querySelector("#botIzq").addEventListener("mousedown",()=>{
+  indiceInst--;
+  cambiarInst();
+})
+document.querySelector("#botDer").addEventListener("mousedown",()=>{
+  indiceInst++;
+  cambiarInst();
+})
+
 
 // document.querySelector("#debug").addEventListener("mousedown",funcionDebug1);
 // document.querySelector("#debug2").addEventListener("mousedown",reproducir2);
