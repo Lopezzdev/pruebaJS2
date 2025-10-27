@@ -704,9 +704,10 @@ function clickFX(){
   }
 
   if(!triggerFX){
-    if(mouseX>=386&&mouseX<=406&&mouseY>=124&&mouseY<=144){selecRev=0;crearReverb();};
-    if(mouseX>=386&&mouseX<=406&&mouseY>=92&&mouseY<=112){selecRev=1;crearReverb();};
-    if(mouseX>=386&&mouseX<=406&&mouseY>=56&&mouseY<=76){selecRev=2;crearReverb();};
+    if(mouseX>=386&&mouseX<=406&&mouseY>=144&&mouseY<=164){selecRev=0;crearReverb();};
+    if(mouseX>=386&&mouseX<=406&&mouseY>=114&&mouseY<=134){selecRev=1;crearReverb();};
+    if(mouseX>=386&&mouseX<=406&&mouseY>=79&&mouseY<=99){selecRev=2;crearReverb();};
+    if(mouseX>=386&&mouseX<=406&&mouseY>=40&&mouseY<=60){selecRev=3;crearReverb();};
   }
 
   if(!triggerFX){
@@ -816,15 +817,42 @@ document.querySelector("#refrescar").addEventListener("mousedown",()=>{
 
 let indiceInst=0;
 let instrumentos=["Piano","Teclado","Organo","Flauta"];
-function cambiarInst(instrumento){
-  if(indiceInst<0)indiceInst=instrumentos.length;
-  if(indiceInst>=instrumentos.length)indiceInst=0;
+
+function cambiarInst(){
+  if(indiceInst<0)indiceInst=instrumentos.length-1;
+  else if(indiceInst>=instrumentos.length)indiceInst=0;
   document.querySelector("#textoIns").innerHTML=instrumentos[indiceInst];
+
+  switch(indiceInst){
+    case 0:
+      //Piano
+      armonicosCustom=[1,0.6,0.8,0.6,0.5,0.45,0.3,0.15,0.1,0.15,0.1,0.12,0.06,0.06,0.1,0.05,0.02,0.01,0.01,0.02,0.04,0.02];
+      amp1=[0.005,0.018,0.75,0.651,0.7];
+      filtroLow1=[0,0.6,0.5,2,1660,0];
+      habLow1=true;
+      boolFX[3]=true;
+      selecRev=0;
+      matrizEfectos[7][0]=0.98;
+      crearReverb();
+      indiceOnda=5;
+  }
+
+  crearArrays();
+  muestreoFX();
 
 }
 
 
 const esTactil = window.matchMedia('(pointer: coarse)').matches;
+
+if(esTactil){
+    scrollStyle = document.createElement('style');
+    scrollStyle.textContent = `
+      ::-webkit-scrollbar { display: none; }
+      * { scrollbar-width: none; }
+    `;
+    document.head.appendChild(scrollStyle); 
+}
 let notasClick=[];
 let patronPiano=[0,1,2,1,0,0,1,2,1,2,1,0,0,1,2,1,0,0,1,2,1,2,1,0,0];
 
@@ -923,3 +951,4 @@ function funcionDebug2(){
 function p(cosa="XD"){
   console.log(cosa);
 }
+

@@ -351,6 +351,8 @@ document.querySelector("#botDer").addEventListener("mousedown",()=>{
   cambiarInst();
 })
 
+document.querySelector("#botInst").addEventListener("mousedown",cambiarInst)
+
 
 // document.querySelector("#debug").addEventListener("mousedown",funcionDebug1);
 // document.querySelector("#debug2").addEventListener("mousedown",reproducir2);

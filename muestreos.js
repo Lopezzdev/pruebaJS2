@@ -445,18 +445,20 @@ function muestreoFX(){
   ctxFX.fillText("%",430,185);
   ctxFX.fillRect(xBoolFX[3],17,15,15);
 
-  ctxFX.fillRect(388,60,16,16);
-  ctxFX.fillRect(386,90,20,20);
-  ctxFX.fillRect(384,124,24,24);
+  ctxFX.fillRect(390,40,14,14);
+  ctxFX.fillRect(388,70,18,18);
+  ctxFX.fillRect(386,105,22,22);
+  ctxFX.fillRect(384,144,26,26);
   ctxFX.fillStyle="rgba(48, 48, 48, 1)";
   ctxFX.fillRect(xFX[7],40,28,130);
 
   ctxFX.fillStyle="rgba(12,12,12, 1)";
   if(!boolFX[3])ctxFX.fillRect(xBoolFX[3]+1,18,13,13);
 
-  if(selecRev!=0)ctxFX.fillRect(389,61,14,14);
-  if(selecRev!=1)ctxFX.fillRect(387,91,18,18);
-  if(selecRev!=2)ctxFX.fillRect(385,125,22,22);
+  if(selecRev!=0)ctxFX.fillRect(391,41,12,12);
+  if(selecRev!=1)ctxFX.fillRect(389,71,16,16);
+  if(selecRev!=2)ctxFX.fillRect(387,106,20,20);
+  if(selecRev!=3)ctxFX.fillRect(385,145,24,24);
 
   //Pitch
   ctxFX.fillStyle=colorFX;
