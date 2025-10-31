@@ -146,6 +146,16 @@ function crearArrays(){
     }
   };
 
+  
+  //Escalado por cantidad reverb
+  if(boolFX[3]){
+    for(j=0;j<arrayRelaciones.length;j++){
+      for(i=0;i<largosOnda[j];i++){
+          matrizNotas[j][i]+=matrizEfectos[7][0]*matrizNotas[j][i]*5;
+      }
+    }
+  }
+  
   if(indiceOnda!=4&&boolFX[5])sumardist();
 
   // crearReverb();
@@ -429,7 +439,7 @@ function agregarEfectos(){
   vibratoLFO=audioCtx.createOscillator();
 
   vibratoLFO.frequency.value=matrizEfectos[2][0];
-  vibratoGain.gain.value= matrizEfectos[3][0];
+  vibratoGain.gain.value= matrizEfectos[3][0]*0.4;
   if(!boolFX[1]||matrizEfectos[2][0]==0)vibratoGain.gain.value=0;
 
   vibratoLFO.connect(vibratoGain).connect(sources[src].playbackRate);
@@ -508,17 +518,19 @@ function transponer(st){
   trans+=st;
   if(trans<-6)trans=-6;
   if(trans>6)trans=6;
+
+  if(st==0)trans=0;
   
   for(i=0;i<arrayRelaciones.length;i++)arrayRelaciones[i]=arrayRelaciones2[i+6+trans];
   
   if(trans<=0)document.querySelector("#trans").innerHTML=`${trans} st`;
   else document.querySelector("#trans").innerHTML=`+${trans} st`;
 
-  document.querySelector("#trans").style.cssText="top:-30px;transition:top 0.2s;";
+  if(st!=0)document.querySelector("#trans").style.cssText="top:-30px;transition:top 0.2s;";
 
-  delaySt=setTimeout(() => {
-    document.querySelector("#trans").style.cssText="top:0px;transition:top 0.5s;";
-  }, 2000);
+    delaySt=setTimeout(() => {
+      document.querySelector("#trans").style.cssText="top:0px;transition:top 0.5s;";
+    }, 2000);
 
   crearArrays();
 
@@ -699,7 +711,8 @@ function clickFX(){
   
   if(!triggerFX){
     for(i=0;i<xBoolFX.length;i++){
-      if(mouseX>=xBoolFX[i]&&mouseX<=xBoolFX[i]+15&&mouseY<=185&&mouseY>=170)boolFX[i]=!boolFX[i];
+      // if(mouseX>=xBoolFX[i]&&mouseX<=xBoolFX[i]+15&&mouseY<=185&&mouseY>=170)boolFX[i]=!boolFX[i];
+      if(mouseX>=xBoolFX[i]-5&&mouseX<=xBoolFX[i]+20&&mouseY<=190&&mouseY>=165)boolFX[i]=!boolFX[i];
     }
   }
 
@@ -814,9 +827,35 @@ document.querySelector("#refrescar").addEventListener("mousedown",()=>{
   muestreoEnv1();
 
 })
+document.querySelector("#borrar").addEventListener("mousedown",()=>{
+
+  indiceOnda=0;
+  
+  boolEnv=false,boolAmp1=false,boolLow1=false,habLow1=false,boolHigh1=false,habHigh1=false;
+  amp1=[0.01,1,0.5,0.5,0.5],maxAmps=[10,10,1,10,1];boolCustom=false;
+  filtroLow1=[1,1,0.3,0.5,1500,10],maxFiltros=[10,10,1,10,10000,20];
+  filtroHigh1=[1,1,0.3,0.5,1500,10];
+
+  boolFiltros=[0,0,0,0],Xfiltros=[100,250,500,600],Yfiltros=[80,160,20,101],freqFiltros=[54,236,2779,7455],dBFiltros=[6.66,-6.66,16.66,3,16],Qfiltros=[0,1,5,0],xEcu,yEcu,qEcu;
+  
+  matrizEfectos=[[7,0.2,20],[0.6,0,1],[8,0.2,15],[0.03,0.01,0.1],[0.3,0.05,1],[0.4,0.05,0.8],[0.3,0,1],[0.4,0,1],[0,-2,2],[0.3,0,1],[0.3,0,0.9],[0.8,0,1]];
+  boolFX=[false,false,false,false,false,false],selecRev=1,indiceFX=-1;
+
+  octava=2;
+
+  transponer(0);
+
+  muestreoFX();muestreoEcu();muestreoEnv1();
+
+  document.querySelector("#ancho").style.cssText="left:10px;transition:left 0.5s;";
+  document.querySelector("#instrumentos").style.cssText="top:0px;transition:top 0.5s;";
+
+  crearArrays();
+
+})
 
 let indiceInst=0;
-let instrumentos=["Piano","Teclado","Organo","Flauta"];
+let instrumentos=["Piano - Sustain","Piano","Órgano","Teclado","Bajo","8-bit","Sinte 1"];
 
 function cambiarInst(){
   if(indiceInst<0)indiceInst=instrumentos.length-1;
@@ -825,20 +864,110 @@ function cambiarInst(){
 
   switch(indiceInst){
     case 0:
-      //Piano
+      //Piano - sustain
       armonicosCustom=[1,0.6,0.8,0.6,0.5,0.45,0.3,0.15,0.1,0.15,0.1,0.12,0.06,0.06,0.1,0.05,0.02,0.01,0.01,0.02,0.04,0.02];
       amp1=[0.005,0.018,0.75,0.651,0.7];
       filtroLow1=[0,0.6,0.5,2,1660,0];
-      habLow1=true;
-      boolFX[3]=true;
+      habLow1=true;      
+      habHigh1=false;
+      boolFiltros=[0,0,0,0];
+      boolFX=[0,0,0,1,0];
       selecRev=0;
       matrizEfectos[7][0]=0.98;
       crearReverb();
       indiceOnda=5;
-  }
+      break;
+    case 1:
+      //Piano
+      armonicosCustom=[1,0.6,0.8,0.6,0.5,0.45,0.3,0.15,0.1,0.15,0.1,0.12,0.06,0.06,0.1,0.05,0.02,0.01,0.01,0.02,0.04,0.02];
+      amp1=[0.005,0.018,0.75,0.1,0.7];
+      filtroLow1=[0,0.6,0.5,2,1660,0];
+      habLow1=true;      
+      habHigh1=false;
+      boolFiltros=[0,0,0,0];
+      boolFX=[0,0,0,1,0];
+      selecRev=0;
+      matrizEfectos[7][0]=0.98;
+      crearReverb();
+      indiceOnda=5;
+      break;
+    case 2:
+      //Organo
+      armonicosCustom=[0.422, 0.68, 0.934, 0.173, 0.463, 0.494, 0.110, 0.525, 0.168, 0.2]
+      amp1=[0.03,0.018,0.75,0.6,0.7];
+      filtroLow1=[0,0.6,0.5,2,1660,0];
+      habLow1=true;
+      habHigh1=false;
+      boolFiltros=[0,0,0,0];
+      boolFX=[1,0,0,1,0];
+      selecRev=1;
+      matrizEfectos[7][0]=0.45;
+      matrizEfectos[0][0]=0.05;
+      matrizEfectos[1][0]=0.1;
+      crearReverb();
+      indiceOnda=5;
+      break;
+    case 3:
+      //Teclado
+      armonicosCustom=[1,0.6,0.8,0.6,0.5,0.45,0.3,0.15];
+      amp1=[0.005,0.018,0.75,0.5,0.7];
+      habLow1=true;
+      filtroLow1=[0,0.6,0.5,2,1660,0];
+      habHigh1=false;
+      boolFiltros=[0,0,0,0];
+      boolFX=[0,0,0,1,0];
+      selecRev=0;
+      matrizEfectos[7][0]=0.9;
+      crearReverb();
+      indiceOnda=5;
+      break;
+    case 4:
+      //Bajo
+      armonicosCustom=[1,0.9,0.2,0.1];
+      amp1=[0.005,2,0,0.07,0.6];
+      habLow1=false;
+      habHigh1=false;
+      boolFiltros=[0,0,0,0];
+      boolFX=[0,0,0,1,0];
+      selecRev=0;
+      matrizEfectos[7][0]=0.15;
+      crearReverb();
+      indiceOnda=5;
+      octava=1;
+      break;
+    case 5:
+      //8-bit
+      amp1=[0.005,0,1,0.005,0.5];
+      habLow1=false;
+      habHigh1=false;
+      boolFiltros=[0,0,0,0];
+      boolFX=[0,0,0,0,0];
+      selecRev=0;
+      indiceOnda=1;
+      octava=2;
+      coefAncho=1;
+      break;
+    case 6:
+      //Sinte 1
+      amp1=[0.02,1,0.6,0.7,0.5];
+      habLow1=true;
+      filtroLow1=[0.8,1,0.4,2,1000,7];
+      habHigh1=false;
+      boolFiltros=[0,0,0,0];
+      boolFX=[1,0,0,1,0];
+      selecRev=1;
+      matrizEfectos[7][0]=0.3;
+      matrizEfectos[0][0]=8;
+      matrizEfectos[1][0]=0.8;
+      indiceOnda=2;
+      octava=2;
+      break;
+
+    }
 
   crearArrays();
   muestreoFX();
+  mostrarAncho();
 
 }
 

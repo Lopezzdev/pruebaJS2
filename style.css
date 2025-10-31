@@ -59,6 +59,7 @@ canvas{
 #bajarOctava img{height: 55%;transform: rotate(180deg);}
 
 #refrescar img{height: 70%;}
+#borrar img{height: 75%;}
 #botCentrar img {height: 65%;}
 
 #botInst img{height: 120%;}
@@ -210,20 +211,29 @@ canvas{
     z-index: 1;
 }
 
-#refrescar{
+#refrescar,#borrar{
     display: flex;
     justify-content: center;
     align-items: center;
     position:absolute;
     width: 40px;
     height: 40px;
-    background-color: rgba(122, 31, 31);
     background-image: linear-gradient(to right, rgb(95, 25, 25),rgb(95, 25, 25),rgb(95, 25, 25), rgb(107, 29, 29));
+    z-index: -1;
+}
+
+#refrescar{
     top:0px;
     left: 40px;
-    z-index: -1;
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
+}
+
+#borrar{
+    top:40px;
+    right: 40px;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 #ancho{
@@ -244,6 +254,14 @@ canvas{
     width: 75px;
 }
 
+#borrar{
+    top:30px;
+    right: -40px;
+    width: 40px;
+    height: 40px;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+}
 
 
 #bloqueoAux{

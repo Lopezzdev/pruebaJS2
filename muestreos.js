@@ -115,6 +115,11 @@ function muestreo(){
 //Mostrar custom
 function mostrarCustom(){
 
+  if(indiceEnv==6){
+    document.querySelector("#instrumentos").style.cssText="top:0px;transition:top 0.5s;";
+    indiceEnv=0;
+  }
+
   if((indiceOnda==5||indiceOnda==3)){
     document.querySelector("#custom").style.cssText="top:-202px;transition:top 0.5s;";
     document.querySelector("#env").style.cssText="top:0px;transition:top 0.5s;";
