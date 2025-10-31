@@ -231,7 +231,7 @@ canvas{
 
 #borrar{
     top:40px;
-    right: 40px;
+    right: -40px;
     border-bottom-right-radius: 10px;
     border-top-right-radius: 10px;
 }
@@ -253,16 +253,6 @@ canvas{
 #botLow1,#botHigh1,#botAmp1,#botEQ1{
     width: 75px;
 }
-
-#borrar{
-    top:30px;
-    right: -40px;
-    width: 40px;
-    height: 40px;
-    border-bottom-right-radius: 10px;
-    border-top-right-radius: 10px;
-}
-
 
 #bloqueoAux{
     width: 820px;
