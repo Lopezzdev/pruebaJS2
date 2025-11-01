@@ -855,7 +855,7 @@ document.querySelector("#borrar").addEventListener("mousedown",()=>{
 })
 
 let indiceInst=0;
-let instrumentos=["Piano - Sustain","Piano","Órgano","Teclado","Bajo","8-bit","Sinte 1"];
+let instrumentos=["Piano - Sustain","Piano","Órgano","Teclado","Bajo","8-bit","Sinte-1","Sinte-2","Eco","Campana"];
 
 function cambiarInst(){
   if(indiceInst<0)indiceInst=instrumentos.length-1;
@@ -876,6 +876,7 @@ function cambiarInst(){
       matrizEfectos[7][0]=0.98;
       crearReverb();
       indiceOnda=5;
+      octava=1;
       break;
     case 1:
       //Piano
@@ -890,6 +891,7 @@ function cambiarInst(){
       matrizEfectos[7][0]=0.98;
       crearReverb();
       indiceOnda=5;
+      octava=1;
       break;
     case 2:
       //Organo
@@ -906,6 +908,7 @@ function cambiarInst(){
       matrizEfectos[1][0]=0.1;
       crearReverb();
       indiceOnda=5;
+      octava=1;
       break;
     case 3:
       //Teclado
@@ -920,11 +923,12 @@ function cambiarInst(){
       matrizEfectos[7][0]=0.9;
       crearReverb();
       indiceOnda=5;
+      octava=2;
       break;
     case 4:
       //Bajo
       armonicosCustom=[1,0.9,0.2,0.1];
-      amp1=[0.005,2,0,0.07,0.6];
+      amp1=[0.005,2,0,0.07,0.65];
       habLow1=false;
       habHigh1=false;
       boolFiltros=[0,0,0,0];
@@ -962,8 +966,57 @@ function cambiarInst(){
       indiceOnda=2;
       octava=2;
       break;
+    case 7:
+      //Sinte 2
+      amp1=[0.06,1,0.8,0.2,0.4];
+      habLow1=true;
+      filtroLow1=[0,1.3,0.6,0.5,1700,15];
+      habHigh1=false;
+      boolFiltros=[0,0,0,0];
+      boolFX=[0,0,0,1,0];
+      selecRev=1;
+      matrizEfectos[7][0]=0.4;
+      indiceOnda=2;
+      octava=0;
+      break;
+    case 8:
+      //Eco
+      amp1=[0.01,0.25,0,0.15,0.5];
+      armonicosCustom=[1,0.9,0.2];
+      habLow1=true;
+      filtroLow1=[0.18,0.15,0.4,0.5,1500,10];
+      habHigh1=false;
+      boolFiltros=[0,0,0,0];
+      boolFX=[0,1,1,0,0];
+      matrizEfectos[2][0]=8;
+      matrizEfectos[3][0]=0.03;
+      matrizEfectos[4][0]=0.2;
+      matrizEfectos[5][0]=0.45;
+      matrizEfectos[6][0]=0.45;
+      indiceOnda=5;
+      octava=2;
+      break;
+    case 9:
+      //Campana
+      armonicosCustom = [1.000, 0.003, 0.759, 0.004, 0.002, 0.011, 0.001, 0.002, 0.003, 0.176, 0.003, 0.001,0,0,0,0,0.3,0,0,0.2,0,0,0.25];
+      amp1=[0.007,1.5,0,0.5,0.5];
+      habLow1=true;
+      filtroLow1=[0,0.6,0.5,2,4000,3];
+      habHigh1=false;
+      boolFiltros=[0,0,0,0];
+      boolFX=[0,1,0,1,0];
+      selecRev=0;
+      matrizEfectos[7][0]=0.9;
+      matrizEfectos[2][0]=5;
+      matrizEfectos[3][0]=0.01;
+      crearReverb();
+      indiceOnda=5;
+      octava=4;
+      break;
 
     }
+
+  for(i=armonicosCustom.length;i<cantArmonicos;i++)armonicosCustom[i]=0;
 
   crearArrays();
   muestreoFX();
