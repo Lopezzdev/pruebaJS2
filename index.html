@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <title>Sintetizador</title>
+
+    <link rel="icon" href="./media/teclado.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+
+    <div id="contCanvas">
+        <div id="botones">
+            <div id="contOndas">
+                <div id="parte1">
+                    <div class="boton" id="botSeno">
+                        <img src="./media/seno.png" alt="">
+                    </div>
+                    <div class="boton" id="botCuadrada">
+                        <img src="./media/cuadrada.png" alt="">
+                    </div>
+                    <div class="boton" id="botTriangular">
+                         <img src="./media/triangular.png" alt="">
+                    </div>
+                </div>
+                <div id="parte2">
+                    <div class="boton" id="botRandom">Rand.</div>
+                    <div class="boton" id="botCustom">Custom</div>
+                    <div class="boton" id="botDrums">
+                         <img src="./media/drums.png" alt="">
+                    </div>
+                </div>  
+            </div>
+            <div id="contOctavas">
+                <div class="boton" id="subirOctava">
+                    <img src="./media/arriba.png" alt="">
+                </div>
+                <div class="boton" id="bajarOctava">
+                     <img src="./media/arriba.png" alt="">
+                </div>
+            </div>
+            <div id="contTrans">
+                <div class="boton" id="mas1st">+1st</div>
+                <div class="boton" id="menos1st">-1st</div>
+            </div>
+            <div id="contFX">
+                <div class="boton" id="botFX">FX</div>
+                <div class="boton" id="botInst">
+                    <img src="./media/teclado.png" alt="">
+                </div>
+            </div>
+            <div id="contAyuda">
+                <div class="boton" id="botCentrar">
+                    <img src="./media/centrar.png" alt="">
+                </div>
+                <div class="boton" id="botAyuda">?</div>
+            </div>
+            <div id="contEnv">
+                <div id="parte3">
+                    <div class="boton" id="botAmp1">Amp</div>
+                    <div class="boton" id="botEQ1">EQ</div>
+                </div>
+                <div id="parte4">
+                    <div class="boton" id="botLow1">Lowpass</div>
+                    <div class="boton" id="botHigh1">Highpass</div>
+                </div>    
+            </div>
+        </div>
+
+        <canvas id="teclado" height="206" width="753"></canvas>
+
+        <canvas id="env" height="202" width="702"></canvas>
+        <div id="trans">0st</div>
+        <canvas id="custom" height="202" width="704"></canvas>
+        <div id="refrescar">
+            <img src="./media/refrescar.png" alt="">
+        </div>
+        <canvas id="ancho" height="202" width="40"></canvas>
+        <canvas id="ecu" height="202" width="704"></canvas>
+        <canvas id="efectos" height="220" width="753"></canvas>
+        <div id="instrumentos">
+            <div id="contInst">
+                <div id="botIzq">◀</div>
+                <div id="textoIns">Piano</div>
+                <div id="botDer">▶</div>
+            </div>
+        </div>
+        <div id="borrar">
+            <img src="./media/borrar.png" alt="">
+        </div>
+
+        <div id="bloqueoAux"></div>
+
+        <div id="bloqueoGral"></div>
+        <div id="tutorial">
+            <div id="barraTut">Sintetizador JS</div>
+            <div id="textoTut"></div>
+            <div id="saltar">Saltar tutorial</div>
+            <div id="iniciar">Iniciar tutorial</div>
+            <div id="bloqueoTut"></div>
+        </div>
+
+    </div>    
+
+    <div id="debug"></div>
+    <div id="debug2"></div>
+
+    <canvas id="canvaPrueba" height="200" width="1000"></canvas>
+    <!-- <input id="slide1" type="range" min="0" max="0.99" value="0.5" step="0.01"> -->
+    <!-- <input id="slide2" type="range" min="0" max="1" value="0.5" step="0.01"> -->
+
+    
+    <script src="script.js"></script>
+    <script src="muestreos.js"></script>
+    <script src="instrumentos.js"></script>
+    <script src="eventos.js"></script>
+    <script src="tutorial.js"></script>
+
+</body>
+
+</html>

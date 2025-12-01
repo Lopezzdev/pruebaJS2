@@ -9,13 +9,8 @@
     /* font-variation-settings:"wdth"; */
 }
 html{
-    min-width: 100%;
-    min-height: 100%;
+    height: 100%;
     background-color: rgb(0, 0, 0);
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: column;
 }
 
 body{
@@ -25,50 +20,49 @@ body{
     align-items: center;
     -webkit-filter: drop-shadow(0px 0px 5px #383838);
     filter: drop-shadow(0px 0px 5px #383838);
+    min-height: 100%;
+    min-width: 100%;
+    width: 1000px;
 }
 
 canvas{
-    background-color: rgb(45, 45, 45);
     z-index: 1;
 }
 
-#botones>div>div{
-    background-color: rgb(122, 31, 31);
-    /* background-image: linear-gradient(to right, rgb(122, 31, 31), rgb(88, 23, 23)); */
+.boton{
+    background-image: linear-gradient(to right, rgb(95, 25, 25),rgb(95, 25, 25),rgb(95, 25, 25), rgb(107, 29, 29));
     width: 60px;
     height: 30px;
     justify-content: center;
     align-items: center;
     display: flex;
-    box-shadow: -3px 1px 5px rgb(0, 0, 0);
+    box-shadow: -3px 2px 1px rgb(0, 0, 0);
     border-radius: 5px;
-
     background-position: center;
     background-repeat: no-repeat;
-
     margin:5px;
 }
 
-#botSeno{
-    background-image: url(https://static.thenounproject.com/png/4900358-200.png);
-    background-size: 25px;
+.boton img{
+    height: 80%;
 }
-#botCuadrada{
-    background-image: url(https://www.svgrepo.com/show/352677/wave-square.svg);
-    background-size: 28px;
+
+#parte1,#parte2{
+    display: flex;
 }
-#botTriangular{
-    background-image: url(https://cdn.creazilla.com/icons/3210751/sawtooth-wave-icon-md.png);
-    background-size: 28px;
-}
-#subirOctava{
-    background-image: url(https://uxwing.com/wp-content/themes/uxwing/download/arrow-direction/up-arrow-icon.png);
-    background-size: 16px;
-}
-#bajarOctava{
-    background-image: url(https://uxwing.com/wp-content/themes/uxwing/download/arrow-direction/down-arrow-icon.png);
-    background-size: 16px;
-}
+
+#botDrums img{height: 110%;transform: rotate(30deg) translateY(-1px);}
+
+#botCuadrada img{height: 70%;}
+
+#subirOctava img{height: 55%;}
+#bajarOctava img{height: 55%;transform: rotate(180deg);}
+
+#refrescar img{height: 70%;}
+#borrar img{height: 75%;}
+#botCentrar img {height: 65%;}
+
+#botInst img{height: 120%;}
 
 #botones{
     display: flex;
@@ -77,36 +71,76 @@ canvas{
     width: 753px;
     height: 100px;
     font-size: 28px;
-    box-shadow: 0px 20px 25px rgb(0, 0, 0);
+    box-shadow: 0px 25px 25px rgb(0, 0, 0);
     z-index: 2;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     position:relative;
-    background-image: linear-gradient(to right, rgb(31, 31, 31), rgb(40, 40, 40));
+    background-image: linear-gradient(to right, rgb(17, 17, 17),rgb(20, 20, 20),rgb(20, 20, 20), rgb(30, 30, 30));
 }
 
-#botones>div>div:hover{
+#instrumentos{
+    background-color: rgb(20, 20, 20);
+    width: 260px;
+    height: 50px;
+    position: absolute;
+    top: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+#contInst{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    box-shadow: -2px 3px 1px rgb(0, 0, 0);
+}
+
+#textoIns{
+    width: 80%;
+    height: 35px;
+    color:rgb(110, 110, 110);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(12, 12, 12);
+}
+
+#botIzq,#botDer{
+    height: 33px;
+    width: 33px;
+    background-color: rgb(12, 12, 12);
+    border:solid 1px rgb(33, 33, 33);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 900;
+    color:rgb(84, 84, 84);
+}
+
+.boton:hover,#borrar:hover{
     transform: scale(1.03);transition:transform 0.1s;
 }
-#botones>div>div:active{
+.boton:active,#borrar:active{
     transform: scale(1.02);
 }
 
-#teclado{width: 753px;}
-
-#debug,#debug2,#debug3{
-    margin: 5px;
-    padding: 5px;
-    width: 20%;
-    text-align: center;
-    background-color: rgb(150, 76, 76);
-    display: none;
+#botIzq:hover,#botDer:hover{
+    transform: scale(1.04);transition: transform 0.1s;
+}
+#botIzq:active,#botDer:active{
+    transform: scale(1.02);
 }
 
-#canvaPrueba{
-    display: none;
+#teclado{
+    width: 753px;
+    background-color: #141414;
 }
-
 
 #contCanvas{
     position:relative;
@@ -114,8 +148,12 @@ canvas{
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    width: 753px;
+    margin:300px 30px;
+    bottom:0px;
+    right: 0px;
 }
-#amp1{
+#env{
     position:absolute;
     z-index: 0;
     /* top:-82px; */
@@ -125,30 +163,49 @@ canvas{
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
 }
+#custom,#ecu,#efectos{
+    position:absolute;
+    z-index: 0;
+    background-color: rgb(12, 12, 12);
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+#custom,#ecu{
+    left: 20px;
+    top:0px;
+}
+#efectos{
+    left:0px;
+    top:10px;
+}
 
 #botones>div{
     display: flex;
-    height: 100%;
+    /* height: 100%; */
 }
-
 #contOndas{
     align-items: center;
+    flex-direction: column;
 }
 #contOctavas{
     flex-direction: column;
     justify-content: center;
 }
-#contEnv,#contTrans{
+#contEnv,#contTrans,#contOndas,#contFX,#contBotInst,#contAyuda{
     font-size: 16px;
     font-weight: 900;
     justify-content: center;
     align-items: center;
 }
 
+#contTrans,#contFX{flex-direction: column;}
+#contAyuda{flex-direction: column;font-size: 20px;}
+
+
 #trans{
     position:absolute;
     top:0px;
-    left:490px;
+    left:372px;
     font-weight: 600;
     display: flex;
     justify-content: center;
@@ -156,7 +213,188 @@ canvas{
     color: rgba(122, 31, 31, 0.6);
     height: 30px;
     width: 50px;
-    background-color: rgb(12, 12, 12);
+    background-color: rgb(6, 6, 6);
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
+    z-index: 1;
+}
+
+#refrescar,#borrar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position:absolute;
+    width: 40px;
+    height: 40px;
+    background-image: linear-gradient(to right, rgb(95, 25, 25),rgb(95, 25, 25),rgb(95, 25, 25), rgb(107, 29, 29));
+    z-index: -1;
+}
+
+#refrescar{
+    top:0px;
+    left: 40px;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+#borrar{
+    top:30px;
+    right: -40px;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+#ancho{
+    position:absolute;
+    background-color: #141414;
+    left: 10px;
+    top:50px;
+    z-index: 0;
+}
+
+#contEnv{
+    flex-direction:column;
+}
+#contEnv>div{
+    display: flex;
+}
+#botLow1,#botHigh1,#botAmp1,#botEQ1{
+    width: 75px;
+}
+
+#bloqueoAux{
+    width: 820px;
+    height: 240px;
+    /* background-color: red; */
+    position:absolute;
+    top:100px;
+    z-index: -1;
+}
+
+#botDrums{display:none;}
+
+#bloqueoGral{
+    width: 900px;
+    height: 600px;
+    /* background-color: red; */
+    position: absolute;
+    top:-250px;
+    z-index: 2;
+}
+
+#tutorial{
+    display: flex;
+    /* justify-content: center;
+    align-items: center; */
+    color: rgb(185, 185, 185);
+    position:relative;
+    z-index: 3;
+    background-image: linear-gradient(to right, rgb(17, 17, 17),rgb(20, 20, 20),rgb(20, 20, 20), rgb(30, 30, 30));
+    border: solid 2px rgba(255, 255, 255, 0.774);
+    border-radius: 5px;
+    width: 250px;
+    height:80px;
+    overflow: hidden;
+    opacity: 0.95;
+    top:-200px;
+    left: 0px;
+    transform: scale(1);
+}
+
+/* #tutorial div{ */
+#barraTut,#textoTut,#saltar,#iniciar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    text-align: center;
+    position: absolute;
+}
+
+#saltar,#iniciar{
+    overflow: hidden;
+}
+
+#barraTut{
+    background-color: rgb(0, 0, 0);
+    width: 100%;
+    height: 35px;
+    top:0px;
+    border-bottom: 1px solid rgba(255,255,255,0.5);
+}
+
+#textoTut{
+    top:35px;
+    width: 100%;
+    height: 0px;
+    overflow: hidden;
+}
+
+#bloqueoTut{
+    background-color: rgba(0, 0, 0, 0.4);
+    position:absolute;
+    bottom:0px;
+    width: 100%;
+    height: 45px;
+    display: none;
+}
+
+#iniciar{left: 0px;bottom:0px; width: 50%;height: 45px;border-right: 1px solid rgba(255, 255, 255, 0.5);border-top:1px solid rgba(255,255,255,0.5)}
+#saltar{right:0px;bottom:0px; width: 50%;height: 45px;border-top:1px solid rgba(255,255,255,0.5)}
+
+
+  @keyframes crecer {
+    from {
+      transform: scale(0.05);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+  @keyframes foco {
+    0% {
+      transform: scale(0.95);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.5;
+    }
+    100% {
+      transform: scale(0.95);
+      opacity: 1;
+    }
+  }
+
+  #tutorial{
+    animation: crecer 0.5s normal ;
+  }
+
+/* #env{top:-102px;} */
+/* #ecu{top:-202px;} */
+/* #efectos{top:-202px;} */
+/* #instrumentos{top:-100px;} */
+
+#debug,#debug2,#debug3{
+    /* width: 50px; */
+    text-align: center;
+    background-color: rgb(150, 76, 76);
+    display: none;
+}
+
+#debug2{
+    width: 50px;
+    height: 50px;
+    background-color: red;
+}
+
+#canvaPrueba{
+    margin-top: 20px;
+    background-color: #141414;
+    display: none;
+}
+
+input{
+    width: 500px;
+    margin-top:20px;
 }
