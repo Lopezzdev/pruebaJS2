@@ -204,7 +204,7 @@ document.querySelector("#saltar").addEventListener("mousedown",()=>{
       document.querySelector("#bloqueoTut").style.display="block";
       document.querySelector(`#botCentrar`).style.cssText="animation: foco 0.8s infinite ease;"
       document.querySelector("#instrumentos").style.cssText="top:0px;transition:top 0.5s;";
-      moverTut(150,-250,60,"Este botón es para<br>centrar la imagen");
+      moverTut(150,-250,60,"Este botón es para<br>centrar y bloquear la imagen");
         
         setTimeout(() => {
 
@@ -500,7 +500,7 @@ document.querySelector("#iniciar").addEventListener("mousedown",()=>{
   if(indiceTut==1){
       document.querySelector("#tutorial").style.cssText="height:130px;transition:height 1s;"
       document.querySelector("#textoTut").style.cssText="height:50px;transition:height 1s;"
-      document.querySelector("#textoTut").innerHTML="Primero, subí el volumen.";
+      document.querySelector("#textoTut").innerHTML="Primero, subí el volumen";
       document.querySelector("#iniciar").innerHTML="Cerrar";
       document.querySelector("#saltar").innerHTML="Siguiente";
   }else{
