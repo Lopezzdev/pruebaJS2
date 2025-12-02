@@ -9,7 +9,16 @@ window.matchMedia("(orientation: landscape)").addEventListener("change", e => {
   centerDiv();
 });
 
-document.querySelector("#botCentrar").addEventListener("mousedown",centerDiv);
+let boolBloqueo=false;
+// document.querySelector("#botCentrar").addEventListener("mousedown",centerDiv);
+document.querySelector("#botCentrar").addEventListener("mousedown",()=>{
+  document.querySelector("body").style.cssText="overflow:hidden;"
+  centerDiv();
+  event.stopPropagation();
+});
+document.querySelector("#botones").addEventListener("mousedown",()=>{
+  document.querySelector("body").style.cssText="overflow:visible;"
+})
 
 //Leer entrada de teclado
 document.addEventListener("keydown",(event)=>{

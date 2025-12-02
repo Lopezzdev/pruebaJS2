@@ -1,6 +1,6 @@
 let indiceTut=0;
 
-document.querySelector("#bloqueoGral").addEventListener("mousedown",()=>{indiceTut=15;});
+// document.querySelector("#bloqueoGral").addEventListener("mousedown",()=>{indiceTut=15;});
 document.querySelector("#saltar").addEventListener("mousedown",()=>{
 
   indiceTut++;
@@ -362,6 +362,8 @@ document.querySelector("#saltar").addEventListener("mousedown",()=>{
           if(i==5){
             document.querySelector("#bloqueoTut").style.display="none";
             document.querySelector(`#botEQ1`).style.cssText="animation: none;"
+            
+            setTimeout(()=>{boolFiltros=[0,0,0,0];clickEcu();},500);
           }
 
         }, 1000*i+1000);

@@ -886,6 +886,7 @@ function borrar(){
   filtroLow1=[1,1,0.3,0.5,1500,10],maxFiltros=[10,10,1,10,10000,20];
   filtroHigh1=[1,1,0.3,0.5,1500,10];
   armonicosCustom=[1,0.5,0.3];
+  indiceInst=0;
 
   boolFiltros=[0,0,0,0],Xfiltros=[100,250,500,600],Yfiltros=[80,160,20,101],freqFiltros=[54,236,2779,7455],dBFiltros=[6.66,-6.66,16.66,3,16],Qfiltros=[0,1,5,0],xEcu,yEcu,qEcu;
   
@@ -992,9 +993,11 @@ function detenerClick(event){
   apretando[notaClick]=false;
 
   const t = audioCtx.currentTime;
-  ganancias[srcAux].gain.cancelScheduledValues(t);
-  ganancias[srcAux].gain.setValueAtTime(ganancias[srcAux].gain.value, t);
-  ganancias[srcAux].gain.linearRampToValueAtTime(0, t + amp1[3]);
+  try{
+    ganancias[srcAux].gain.cancelScheduledValues(t);
+    ganancias[srcAux].gain.setValueAtTime(ganancias[srcAux].gain.value, t);
+    ganancias[srcAux].gain.linearRampToValueAtTime(0, t + amp1[3]);
+  }catch{}
 
   setTimeout(() => {
     try{
