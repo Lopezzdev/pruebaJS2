@@ -11,11 +11,11 @@ document.querySelector("#saltar").addEventListener("mousedown",()=>{
       document.querySelector("#bloqueoGral").style.display="none";
       break;
     case 2:
-      moverTut(0,-20,80,"El sintetizador se puede tocar con el teclado, de forma táctil, o<br>con un dispositivo MIDI")
+      moverTut(0,20,80,"El sintetizador se puede tocar con el teclado, de forma táctil, o<br>con un dispositivo MIDI")
       break;
     case 3:
       document.querySelector("#bloqueoTut").style.display="block";
-      moverTut(-265,-230,40,"Acá, están las formas de onda");
+      moverTut(-265,230,40,"Acá, están las formas de onda");
       let arrayAux=["botSeno","botCuadrada","botTriangular","botRandom","botCustom"];
       for(let i=0;i<5;i++){
 
@@ -39,7 +39,7 @@ document.querySelector("#saltar").addEventListener("mousedown",()=>{
       document.querySelector("#bloqueoTut").style.display="block";
       document.querySelector(`#subirOctava`).style.cssText="animation: foco 0.8s infinite ease;"
       document.querySelector(`#bajarOctava`).style.cssText="animation: foco 0.8s infinite ease;"
-      moverTut(-110,-250,60,"Con las flechas, se cambia de octava");
+      moverTut(-110,250,60,"Con las flechas, se cambia de octava");
       indiceOnda=1;
       octava=0;
       crearArrays();
@@ -68,7 +68,7 @@ document.querySelector("#saltar").addEventListener("mousedown",()=>{
       document.querySelector("#bloqueoTut").style.display="block";
       document.querySelector(`#mas1st`).style.cssText="animation: foco 0.8s infinite ease;"
       document.querySelector(`#menos1st`).style.cssText="animation: foco 0.8s infinite ease;"
-      moverTut(-20,-250,60,"Usá estos botones<br>para transponer");
+      moverTut(-20,250,60,"Usá estos botones<br>para transponer");
       indiceOnda=2;
       octava=2;
       crearArrays();
@@ -95,7 +95,7 @@ document.querySelector("#saltar").addEventListener("mousedown",()=>{
     case 6:
       document.querySelector("#bloqueoTut").style.display="block";
       document.querySelector(`#botFX`).style.cssText="animation: foco 0.8s infinite ease;"
-      moverTut(60,-250,60,"Con este botón, accedés a los efectos");
+      moverTut(60,250,60,"Con este botón, accedés a los efectos");
 
       setTimeout(() => {
 
@@ -109,7 +109,7 @@ document.querySelector("#saltar").addEventListener("mousedown",()=>{
       document.querySelector("#bloqueoTut").style.display="block";
       document.querySelector(`#botFX`).style.cssText="animation: foco 0.8s infinite ease;"
       document.querySelector("#efectos").style.cssText="top:-202px;transition:top 0.5s;";
-      moverTut(-205,-430,40,"Cada efecto tiene sus parámetros");
+      moverTut(-205,430,40,"Cada efecto tiene sus parámetros");
 
       indiceOnda=2;
       octava=2;
@@ -142,7 +142,7 @@ document.querySelector("#saltar").addEventListener("mousedown",()=>{
             setTimeout(()=>detener(12),20)
           }
 
-          if(i==3)moverTut(185,-450,60,"Y se manejan de<br>forma independiente");
+          if(i==3)moverTut(185,450,60,"Y se manejan de<br>forma independiente");
 
         }, 2000*i+1000);
 
@@ -164,7 +164,7 @@ document.querySelector("#saltar").addEventListener("mousedown",()=>{
       document.querySelector(`#botInst`).style.cssText="animation: foco 0.8s infinite ease;"
       document.querySelector("#instrumentos").style.cssText="top:-40px;transition:top 0.5s;";
       document.querySelector("#efectos").style.cssText="top:10px;transition:top 0.5s;";
-      moverTut(0,-300,60,"Acá, están los<br>sonidos predeterminados");
+      moverTut(0,300,60,"Acá, están los<br>sonidos predeterminados");
 
       indiceInst=0;
       cambiarInst();
@@ -194,7 +194,7 @@ document.querySelector("#saltar").addEventListener("mousedown",()=>{
             document.querySelector(`#botInst`).style.cssText="animation: none;"
           }
 
-          if(i==4)moverTut(0,-300,60,"Cuenta con 14<br>sonidos diferentes");
+          if(i==4)moverTut(0,300,60,"Cuenta con 14<br>sonidos diferentes");
 
         }, 2000*i+2000);
       }
@@ -204,7 +204,7 @@ document.querySelector("#saltar").addEventListener("mousedown",()=>{
       document.querySelector("#bloqueoTut").style.display="block";
       document.querySelector(`#botCentrar`).style.cssText="animation: foco 0.8s infinite ease;"
       document.querySelector("#instrumentos").style.cssText="top:0px;transition:top 0.5s;";
-      moverTut(150,-250,60,"Este botón es para<br>centrar y bloquear la imagen");
+      moverTut(150,250,60,"Este botón es para<br>centrar y bloquear la imagen");
         
         setTimeout(() => {
 
@@ -217,7 +217,7 @@ document.querySelector("#saltar").addEventListener("mousedown",()=>{
     case 10:
       document.querySelector("#bloqueoTut").style.display="block";
       document.querySelector(`#botAyuda`).style.cssText="animation: foco 0.8s infinite ease;"
-      moverTut(150,-205,60,"Con este, entrás<br>nuevamente al tutorial");
+      moverTut(150,205,60,"Con este, entrás<br>nuevamente al tutorial");
         
         setTimeout(() => {
 
@@ -279,7 +279,7 @@ document.querySelector("#saltar").addEventListener("mousedown",()=>{
       document.querySelector("#bloqueoTut").style.display="block";
       document.querySelector(`#botAmp1`).style.cssText="animation: foco 0.8s infinite ease;"
       document.querySelector("#env").style.cssText="top:-102px;transition:top 0.5s;";
-      moverTut(0,-360,60,`En "Amp", modificás el<br>comportamiento del volumen`);
+      moverTut(0,360,60,`En "Amp", modificás el<br>comportamiento del volumen`);
 
       borrar();
       indiceOnda=2;
@@ -323,7 +323,7 @@ document.querySelector("#saltar").addEventListener("mousedown",()=>{
       document.querySelector(`#botEQ1`).style.cssText="animation: foco 0.8s infinite ease;"
       document.querySelector("#env").style.cssText="top:0px;transition:top 0.5s;";
       document.querySelector("#ecu").style.cssText="top:-202px;transition:top 0.5s;";
-      moverTut(0,-440,40,`En "EQ", tenés el ecualizador`);
+      moverTut(0,440,40,`En "EQ", tenés el ecualizador`);
 
       borrar();
       indiceOnda=2;
@@ -376,7 +376,7 @@ document.querySelector("#saltar").addEventListener("mousedown",()=>{
       document.querySelector(`#botHigh1`).style.cssText="animation: foco 0.8s infinite ease;"
       document.querySelector("#env").style.cssText="top:-142px;transition:top 0.5s;";
       document.querySelector("#ecu").style.cssText="top:0px;transition:top 0.5s;";
-      moverTut(0,-400,60,`En "Lowpass" y "Highpass",<br>están los filtros dinámicos`);
+      moverTut(0,400,60,`En "Lowpass" y "Highpass",<br>están los filtros dinámicos`);
 
       borrar();
       indiceOnda=1;
@@ -422,7 +422,7 @@ document.querySelector("#saltar").addEventListener("mousedown",()=>{
       document.querySelector("#bloqueoTut").style.display="block";
       document.querySelector(`#borrar`).style.cssText="animation: foco 0.8s infinite ease;"
       document.querySelector("#env").style.cssText="top:0px;transition:top 0.5s;";
-      moverTut(395,-230,60,"Con este botón, se resetean<br>todos los parámetros");
+      moverTut(395,230,60,"Con este botón, se resetean<br>todos los parámetros");
         
         setTimeout(() => {
 
@@ -437,7 +437,7 @@ document.querySelector("#saltar").addEventListener("mousedown",()=>{
       document.querySelector(`#botRandom`).style.cssText="animation: foco 0.8s infinite ease;"
       document.querySelector(`#botCustom`).style.cssText="animation: foco 0.8s infinite ease;"
       document.querySelector("#custom").style.cssText="top:-202px;transition:top 0.5s;";
-      moverTut(0,-460,60,`En "Random" y en "Custom",<br>cada barra es un armónico`);
+      moverTut(0,460,60,`En "Random" y en "Custom",<br>cada barra es un armónico`);
 
       borrar();
       indiceOnda=4;
@@ -518,11 +518,23 @@ document.querySelector("#iniciar").addEventListener("mousedown",()=>{
 
 })
 
+let xTuti=250,yTuti=110;
 function moverTut(tutX,tutY,alt,txt){
-  document.querySelector("#contCanvas").style.cssText=`right:${tutX}px;bottom:${tutY}px;transform:scale(${coefZoom});transition:bottom 1s,right 1s;`
-  document.querySelector("#tutorial").style.cssText=`left:${tutX}px;top:${tutY-200}px;transition:top 1s,left 1s,height 1s;height:${alt+80}px;`
+  // document.querySelector("#contCanvas").style.cssText=`right:${tutX}px;bottom:${tutY}px;transform:scale(${coefZoom});transition:bottom 1s,right 1s;`
+  document.querySelector("#contCanvas").style.cssText=`right:${tutX}px;top:${tutY}px;transform:scale(${coefZoom});transition:top 1s,right 1s;`
+  // document.querySelector("#tutorial").style.cssText=`left:${tutX}px;top:${tutY+200}px;transition:top 1s,left 1s,height 1s;height:${alt+80}px;`
+  document.querySelector("#tutorial").style.cssText=`right:${xTuti-tutX}px;top:${yTuti-tutY}px;transition:top 1s,right 1s,height 1s;height:${alt+80}px;`
+  
+  
   document.querySelector("#textoTut").style.cssText=`height:${alt}px;transition: height 1s;`;
   document.querySelector("#textoTut").innerHTML=txt;
+
+
+  //function mover(X,Y){
+  //     document.querySelector("#hijo").style.cssText=`right:${posXi-X}px;top:${posYi-Y}px;transition:right 0.5s,top 0.5s;`
+  //     document.querySelector("#contenedor").style.cssText=`right:${X}px;top:${Y}px;transition:right 0.5s,top 0.5s;`
+  // }
+
 
 }
 

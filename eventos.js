@@ -16,9 +16,9 @@ document.querySelector("#botCentrar").addEventListener("mousedown",()=>{
   centerDiv();
   event.stopPropagation();
 });
-document.querySelector("#botones").addEventListener("mousedown",()=>{
-  document.querySelector("body").style.cssText="overflow:visible;"
-})
+document.querySelector("#botones").addEventListener("touchstart",()=>document.querySelector("body").style.cssText="overflow:visible;")
+document.querySelector("#botones").addEventListener("mousedown",()=>document.querySelector("body").style.cssText="overflow:visible;")
+document.querySelector("#botAyuda").addEventListener("mousedown",()=>document.querySelector("body").style.cssText="overflow:visible;")
 
 //Leer entrada de teclado
 document.addEventListener("keydown",(event)=>{
