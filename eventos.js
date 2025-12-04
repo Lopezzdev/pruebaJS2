@@ -10,15 +10,25 @@ window.matchMedia("(orientation: landscape)").addEventListener("change", e => {
 });
 
 let boolBloqueo=false;
-// document.querySelector("#botCentrar").addEventListener("mousedown",centerDiv);
-document.querySelector("#botCentrar").addEventListener("mousedown",()=>{
+
+document.querySelector("#botCentrar").addEventListener("mousedown",bloqueo);
+
+document.querySelector("#botones").addEventListener("touchstart",desbloqueo);
+document.querySelector("#botones").addEventListener("mousedown",desbloqueo);
+document.querySelector("#botAyuda").addEventListener("mousedown",bloqueo);
+
+function desbloqueo(){
+  document.querySelector("#botCentrar").innerHTML=`<img src="./media/bloqueo.png" alt="">`;
+  document.querySelector("body").style.cssText="overflow:visible;"
+}
+function bloqueo(){
   document.querySelector("body").style.cssText="overflow:hidden;"
   centerDiv();
-  event.stopPropagation();
-});
-document.querySelector("#botones").addEventListener("touchstart",()=>document.querySelector("body").style.cssText="overflow:visible;")
-document.querySelector("#botones").addEventListener("mousedown",()=>document.querySelector("body").style.cssText="overflow:visible;")
-document.querySelector("#botAyuda").addEventListener("mousedown",()=>document.querySelector("body").style.cssText="overflow:visible;")
+  document.querySelector("#botCentrar").innerHTML=`<img src="./media/desbloqueo.png" alt="">`
+  try{event.stopPropagation();}catch{}
+}
+
+bloqueo();
 
 //Leer entrada de teclado
 document.addEventListener("keydown",(event)=>{

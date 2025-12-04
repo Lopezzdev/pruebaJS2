@@ -268,10 +268,7 @@ function sumardist(){
 
         matrizNotas[j][i]=0;
         for(k=0;k<armonicosCustom.length;k++){
-          // matrizNotas[j][i]-=Math.sin(2*(k+1)*Math.PI*frecuencia*arrayRelaciones[j]*coef[j]*(Math.pow(2,octava))*(i+1)/sampleRate)*(armonicosCustom[k]*0.4*amp1[4]/(2*(k+1)));
-          // matrizNotas[j][i]-=Math.sin(2*(k+1)*Math.PI*frecuencia*arrayRelaciones[j]*coef[j]*(Math.pow(2,octava))*(i+1)/sampleRate)*(armonicosCustom[k]*0.4*amp1[4]);
           matrizNotas[j][i]-=Math.sin(2*(k+1)*Math.PI*frecuencia*arrayRelaciones[j]*coef[j]*(Math.pow(2,octava))*(i+1)/sampleRate)*(armonicosCustom[k]*amp1[4]);
-          // matrizNotas[j][i]-=Math.sin(2*(k+1)*Math.PI*frecuencia*arrayRelaciones[j]*coef[j]*(Math.pow(2,octava))*(i+1)/sampleRate)*(armonicosCustom[k]*0.4*amp1[4]/(0.25*(k+1)));
         }
       }
     }
@@ -755,7 +752,8 @@ function clickFX(){
 
   mouseX=mouseX/coefZoom;
   mouseY=mouseY/coefZoom;
-  
+  if(esTactil)mouseY*=-1;
+
   if(!triggerFX){
     for(i=0;i<xBoolFX.length;i++){
       // if(mouseX>=xBoolFX[i]&&mouseX<=xBoolFX[i]+15&&mouseY<=185&&mouseY>=170)boolFX[i]=!boolFX[i];

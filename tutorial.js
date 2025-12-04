@@ -9,6 +9,7 @@ document.querySelector("#saltar").addEventListener("mousedown",()=>{
     case 1:
       document.querySelector("#tutorial").style.cssText="transform:scale(0);transition:all 0.25s;"
       document.querySelector("#bloqueoGral").style.display="none";
+      desbloqueo();
       break;
     case 2:
       moverTut(0,20,80,"El sintetizador se puede tocar con el teclado, de forma táctil, o<br>con un dispositivo MIDI")
@@ -514,27 +515,18 @@ document.querySelector("#iniciar").addEventListener("mousedown",()=>{
       document.querySelector("#ecu").style.cssText="top:0px;transition:top 0.5s;";
       document.querySelector("#custom").style.cssText="top:0px;transition:top 0.5s;";
       document.querySelector("#refrescar").style.cssText="top:0px;left:40px;transition:top 0.5s,left 0.5s;";
+      desbloqueo();
   }
 
 })
 
 let xTuti=250,yTuti=110;
 function moverTut(tutX,tutY,alt,txt){
-  // document.querySelector("#contCanvas").style.cssText=`right:${tutX}px;bottom:${tutY}px;transform:scale(${coefZoom});transition:bottom 1s,right 1s;`
   document.querySelector("#contCanvas").style.cssText=`right:${tutX}px;top:${tutY}px;transform:scale(${coefZoom});transition:top 1s,right 1s;`
-  // document.querySelector("#tutorial").style.cssText=`left:${tutX}px;top:${tutY+200}px;transition:top 1s,left 1s,height 1s;height:${alt+80}px;`
   document.querySelector("#tutorial").style.cssText=`right:${xTuti-tutX}px;top:${yTuti-tutY}px;transition:top 1s,right 1s,height 1s;height:${alt+80}px;`
-  
   
   document.querySelector("#textoTut").style.cssText=`height:${alt}px;transition: height 1s;`;
   document.querySelector("#textoTut").innerHTML=txt;
-
-
-  //function mover(X,Y){
-  //     document.querySelector("#hijo").style.cssText=`right:${posXi-X}px;top:${posYi-Y}px;transition:right 0.5s,top 0.5s;`
-  //     document.querySelector("#contenedor").style.cssText=`right:${X}px;top:${Y}px;transition:right 0.5s,top 0.5s;`
-  // }
-
 
 }
 
@@ -543,7 +535,7 @@ document.querySelector("#botAyuda").addEventListener("mousedown",()=>{
   borrar();
   document.querySelector("#tutorial").style.cssText="height:130px;transform:scale(1);transition:transform 0.25s;"
   document.querySelector("#textoTut").style.cssText="height:50px;"
-  document.querySelector("#textoTut").innerHTML="Primero, subí el volumen.";
+  document.querySelector("#textoTut").innerHTML="Primero, subí el volumen";
   document.querySelector("#iniciar").innerHTML="Cerrar";
   document.querySelector("#saltar").innerHTML="Siguiente";
 
